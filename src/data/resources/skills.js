@@ -1,11 +1,24 @@
-export const skills = [
-  {
-    id: "100",
-    creator_id: "1",
-    name: 'PHP',
-  }
-];
+import { projectsAPIConnection as connection } from '../connections';
 
 export default {
-  getManyByCreatorId: creator_id => skills.filter(p => p.creator_id === creator_id),
-};
+
+  async create({ creator_id, name }) {
+    const data = {
+      type: 'skills',
+      attributes: { creator_id, name }
+    };
+
+    const path = `/skills`;
+
+    return await connection.sendPostRequest({ path, data });
+  },
+
+  async delete({ id }) {
+    const path = `/skills/${id}`;
+
+    const success = await connection.sendDeleteRequest({ path });
+
+    return success ? id : null;
+  },
+
+}

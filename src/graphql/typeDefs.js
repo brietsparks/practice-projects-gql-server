@@ -40,6 +40,10 @@ export default`
       name: String!
     ): Skill
     
+    deleteSkill(
+      id: ID!
+    ): Boolean
+    
     attachSkillToProject(
       skill_id: ID!
       project_id: ID!
